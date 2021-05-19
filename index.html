@@ -2,10 +2,10 @@
 <html lang="pl">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slider zdjęć</title>
     <link rel="Stylesheet" href="style.css">
-    <script src="slider.js"></script>
 </head>
 <body>
     <div class="main-container">
@@ -13,24 +13,30 @@
             <h1>Slider zdjęć</h1>
         </header>
         <main>
-            <div class="slider-container">
-                <figure class="image-container">
-                    <img src="https://images.unsplash.com/photo-1615831808441-85528094b20e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" class="image img1" alt="image1">
-                    <img src="https://images.unsplash.com/photo-1615928769128-4290569b6704?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" class="image img2" alt="image2">
-                    <img src="https://images.unsplash.com/photo-1606936278588-046c8816a75e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" class="image img3" alt="image3">
-                    <img src="https://images.unsplash.com/photo-1615730076336-6306241da5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" class="image img4" alt="image4">
+            <div class="slider">
+                <div class="slider-container">
                     <div class="button btn-previous">
                         <i class="arrow arrow-left"></i>
                     </div>
+                    <figure class="image-container">
+                        <img src="https://images.unsplash.com/photo-1615831808441-85528094b20e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" class="image img1" alt="image1">
+                        <img src="https://images.unsplash.com/photo-1615928769128-4290569b6704?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80" class="image img2" alt="image2">
+                        <img src="https://images.unsplash.com/photo-1606936278588-046c8816a75e?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=80" class="image img3" alt="image3">
+                        <img src="https://images.unsplash.com/photo-1615730076336-6306241da5be?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" class="image img4" alt="image4">
+                        <figcaption class="square-container">
+                            <div class="square square-selected" onclick="changeImage(0)"></div>
+                        </figcaption>
+                    </figure>
                     <div class="button btn-next">
                         <i class="arrow arrow-right"></i>
                     </div>
-                </figure>
+                </div>
             </div>
         </main>
     </div>
     <footer>
         Slider zdjęć Paweł Poremba 2021 &copy;
     </footer>
+    <script src="slider.js"></script>
 </body>
 </html>

@@ -1,54 +1,95 @@
-window.onload = function () {
-    const image = document.querySelectorAll(".image");
-    image[0].style.animationName = "fadeIn";   // Ustawienie obrazu początkowego
-    let currentImg = 0;
-    let nextImg = currentImg++;
+const image = document.querySelectorAll(".image");
+const container = document.querySelector(".square-container");
+image[0].style.display = "block";
+let currentImg = 0;
+let nextImg = currentImg++;
 
-    const slider = () => {         // Funkcja zmieniająca obraz co 5 sekund
-        const imageChange = () => {    // Funkcja zmieniajaca obraz na nastepny
-            if (nextImg >= image.length)
-                nextImg = 0;
+for (let i = 1; i < image.length; i++) {
+    container.innerHTML += `<div class='square' onclick='changeImage(${i})'></div>`;
+}
 
-            if (currentImg >= image.length)
-                currentImg = 0;
+const square = document.querySelectorAll(".square");
 
-            image[currentImg].style.animationName = "fadeOut";
-            currentImg = nextImg;
-            image[nextImg].style.animationName = "fadeIn";
-            nextImg++;
-        }
+const nextImage = () => {    // Funkcja zmieniajaca obraz na nastepny
+    if (nextImg >= image.length)
+        nextImg = 0;
 
-        document.querySelector(".btn-next").addEventListener("click", function nextSlide() {    // Wywolanie za pomoca przycisku
-            imageChange();
-            clearInterval(imageChangeInterval);
-            imageChangeInterval = setInterval(imageChange, 5000);
-        });
+    if (currentImg >= image.length)
+        currentImg = 0;
 
-        const previousImage = () => {         // Funkcja zmieniajaca obraz na poprzedni
-            image[currentImg].style.animationName = "fadeOutPrv";
+    image[currentImg].style.animationName = "fadeOut";
+    image[currentImg].style.display = "none";
 
-            if (currentImg == 0)
-                currentImg = image.length - 1;
-            else
-                currentImg--;
+    if (square[currentImg].classList.contains("square-selected"))
+        square[currentImg].classList.remove("square-selected");
 
-            if (image[currentImg] == undefined)
-                console.log(currentImg);
+    currentImg = nextImg;
+    image[nextImg].style.animationName = "fadeIn";
+    image[nextImg].style.display = "block";
 
-            image[currentImg].style.animationName = "fadeInPrv";
+    if (!square[nextImg].classList.contains("square-selected"))
+        square[nextImg].classList.add("square-selected");
 
-            nextImg = currentImg + 1;
-        }
+    nextImg++;
+}
 
-        document.querySelector(".btn-previous").addEventListener("click", function () {
-            previousImage();
-            clearInterval(imageChangeInterval);
-            imageChangeInterval = setInterval(imageChange, 5000);
-        });
+document.querySelector(".btn-next").addEventListener("click", function nextSlide() {    // Wywolanie za pomoca przycisku
+    nextImage();
+    clearInterval(imageChangeInterval);
+    imageChangeInterval = setInterval(nextImage, 5000);
+});
 
-        imageChange();
-        var imageChangeInterval = setInterval(imageChange, 5000);
-    }
+const previousImage = () => {         // Funkcja zmieniajaca obraz na poprzedni
+    image[currentImg].style.animationName = "fadeOutPrv";
+    image[currentImg].style.display = "none";
 
-    slider();
+    if (square[currentImg].classList.contains("square-selected"))
+        square[currentImg].classList.remove("square-selected");
+
+    if (currentImg == 0)
+        currentImg = image.length - 1;
+    else
+        currentImg--;
+
+    if (image[currentImg] == undefined)
+        console.log(currentImg);
+
+    image[currentImg].style.animationName = "fadeInPrv";
+    image[currentImg].style.display = "block";
+
+    if (!square[currentImg].classList.contains("square-selected"))
+        square[currentImg].classList.add("square-selected");
+
+    nextImg = currentImg + 1;
+}
+
+document.querySelector(".btn-previous").addEventListener("click", function () {
+    previousImage();
+    clearInterval(imageChangeInterval);
+    imageChangeInterval = setInterval(nextImage, 5000);
+});
+
+nextImage();
+var imageChangeInterval = setInterval(nextImage, 5000);
+
+const changeImage = (index) => {
+    clearInterval(imageChangeInterval);
+    imageChangeInterval = setInterval(nextImage, 5000);
+
+    let prvIndex = currentImg;
+
+    if (square[prvIndex].classList.contains("square-selected"))
+        square[prvIndex].classList.remove("square-selected");
+
+    image[prvIndex].style.animationName = "fadeOut";
+    image[prvIndex].style.display = "none";
+
+    if (!square[index].classList.contains("square-selected"))
+        square[index].classList.add("square-selected");
+
+    image[index].style.animationName = "fadeIn";
+    image[index].style.display = "block";
+
+    currentImg = index;
+    nextImg = index + 1;
 }
