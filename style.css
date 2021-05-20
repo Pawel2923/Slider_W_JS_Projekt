@@ -82,20 +82,26 @@ main {
     bottom: 10px;
     left: 5%;
     width: 90%;
-    height: 20px;
+    height: fit-content;
     z-index: 4;
-    display: flex;
-    justify-content: center;
+}
+
+.square-wrapper {
+    width: fit-content;
+    height: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .square {
     width: 20px;
-    height: 100%;
+    height: 20px;
     background-color: #c5c5c5;
     border: 1px solid #ffffff;
     z-index: 5;
-    margin-right: 20px;
+    margin-right: 5px;
     transition: .3s ease;
+    float: left;
 }
 
 .square:hover {
@@ -108,6 +114,11 @@ main {
 
 .square:last-child {
     margin-right: 0;
+}
+
+.square-wrapper::after {
+    content: '';
+    clear: both;
 }
 
 .arrow {
